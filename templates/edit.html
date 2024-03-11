@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>Hello DR.|edit</title>
+</head>
+<body>
+
+    <body id="bg" style="background-image: url('{% static "images/banner2.jpg" %}')";>
+        {% include 'header.html' %}
+    
+        <div class="row mt-1">
+            <div class="col-md-6 mt-1 mx-auto shadow p-3">
+                <h3 class="text-center p-4"><strong> Edit an Appointment </strong></h3>
+                {% for i in data %}
+                <form  method="POST">
+                    {% csrf_token %}
+    
+                    <tr>
+                        <label for="Input1" class="form-label"><em>Patient Name : </em></label>
+                        <input type="text" class="form-control" name="uname" id="Input1" value="{{i.name}}">
+                    </tr>
+    
+                    <tr>
+                        <label for="Input2" class="form-label"><em>Email ID :</em></label>
+                        <input type="email" class="form-control" name="uemail" id="Input2" value="{{i.email}}">
+                    </tr>
+    
+                    <tr>
+                        <label for="Input3" class="form-label"><em>Mobile No :</em></label>
+                        <input type="text" class="form-control" name="umob" id="Input3" value="{{i.mobile}}">
+                    </tr>
+    
+                    <tr class="mb-3">
+                        <label for="Input4" class="form-label"><em>Appointment date:</em></label>
+                        <td>{{i.date|date:"d-m-Y"}}</td><input type="date" class="form-control"  name="udt" id="Input4">
+                    </tr>
+        
+                    <tr class="mb-3">
+                        <label for="Input5" class="form-label"> <em>Health Issue : </em></label>
+                        <textarea name="msg" class="form-control" id="" cols="10" rows="5" id="Input5">{{i.msg}}</textarea>
+                    </tr>
+    
+                    <div class="d-grid gap-4 col-6 mx-auto mt-3 ">
+                        <td><input type="submit" name="send" value="BOOK" style="color: crimson;background-color: lightblue;"/></td>
+                    </div>
+    
+                </form>
+                {% endfor %}
+            </div>
+        </div>
+    
+    <!-- <h2 align="center"> Reviews </h2>
+    {% for i in data %}
+    <form method="post">
+        {% csrf_token %}
+        <table border="1" align="center">
+            <tr>
+                <td>Enter Name:</td>
+                <td><input type="text" name="uname" id="" value="{{i.name}}"></td>
+            </tr>
+            <tr>
+                <td>Email Id:</td>
+                <td><input type="email" name="uemail" id="" value="{{i.email}}"></td>
+            </tr>
+            <tr>
+                <td>Mobile No:</td>
+                <td><input type="text" name="umob" id="" value="{{i.mobile}}"></td>
+            </tr>
+            <tr>
+                <td>Created on:</td>
+                <td><input type="date" name="udt" id="" >{{i.date|date:"d-m-Y"}}</td>
+            </tr>
+            <tr>
+                <td>Message:</td>
+                <td>
+                <textarea name="msg" id="" cols="30" rows="10">{{i.msg}}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <td colspan="2" align="center"><input type="submit" value="SEND"></td>
+            </tr>
+        </table>
+    </form>
+    {% endfor %} -->
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>Hello Dr. | Dashboard</title>
+</head>
+<body id="bg" style="background-image: url('{% static "images/banner2.jpg" %}')";>
+    
+    {% include 'header.html' %}
+    
+
+    <div class="container">
+
+        <div class="rows">
+            <h2 align="center"> My Appointments</h2>
+            <br>
+            
+            <table border="1" align="center" class="table table-primary table-striped">
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Appointment</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Status</th>
+        
+            </tr>
+            
+            {% for x in data %}
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.mobile}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.msg}}</td>
+                <td><a href="/edit/{{x.id}}">Pending</a></td>
+                <td><a href="/delete/{{x.id}}">Completed</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>
